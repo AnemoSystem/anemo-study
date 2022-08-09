@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 19-Jul-2022 às 00:34
+-- Tempo de geração: 09-Ago-2022 às 03:12
 -- Versão do servidor: 10.4.24-MariaDB
 -- versão do PHP: 7.4.29
 
@@ -365,7 +365,7 @@ INSERT INTO `user` (`user_nickname`, `user_password`, `student_id`, `is_logged`,
 ('primo', 'primo', 2, b'0', 0, 0, 0, 0, 100, 0),
 ('a', 'a', 2, b'0', 0, 0, 0, 0, 100, 0),
 ('e', 'e', 2, b'0', 1, 0, 0, 0, 100, 0),
-('jooj', 'jooj', 5, b'0', 0, 3, 1, 0, 100, 0);
+('jooj', 'jooj', 5, b'0', 0, 1, 1, 0, 104, 0);
 
 --
 -- Índices para tabelas despejadas
