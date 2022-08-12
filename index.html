@@ -1,22 +1,48 @@
 <!DOCTYPE html>
 <html lang="pt">
     <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Oswald&family=Roboto:wght@500&display=swap" rel="stylesheet"> 
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Sistema Escolar</title>
+        <link rel="stylesheet" href="css/style.css">
     </head>
     <body>
-        <a href="function/function.php">Função</a><br>
-		<a href="employee/employee.php">Funcionário</a><br>
-		<a href="subject/subject.php">Matéria</a><br>
-		<a href="grade/grade.php">Ano Escolar</a><br>
-		<a href="period/period.php">Período</a><br>
-		<a href="teacher/teacher.php">Professor</a><br>
-		<a href="classroom/classroom.php">Sala</a><br>
-		<a href="student/student.php">Estudante</a><br>
-		<a href="subject_teacher/subject_teacher.php">Professores e suas Matérias</a><br>
-        <a href="grades_attendance/grades_attendance.php">Notas</a><br>
-        <a href="user/user.php">Usuário de jogo</a><br>
+        <div class="logo-title">
+            <img src="img/logo.png">
+            <h3>Bem-vindo ao sistema escolar integrado <b><i>AnemoStudy</i></b></h3>
+            <button style="margin: 20px;"onclick="openNav();">Iniciar Sistema</button>
+        </div>
+        <div class="sidenav" id="mySidenav">
+            <h4 class="sidenav-title">ESCOLA</h4>
+            <a href="function/function.php">Função</a>
+            <a href="employee/employee.php">Funcionário</a>
+            <a href="subject/subject.php">Matéria</a>
+            <a href="grade/grade.php">Ano Escolar</a>
+            <a href="period/period.php">Período</a>
+            <a href="teacher/teacher.php">Professor</a>
+            <a href="classroom/classroom.php">Sala</a>
+            <a href="student/student.php">Estudante</a>
+            <a href="subject_teacher/subject_teacher.php">Professores e suas Matérias</a>
+            <a href="grades_attendance/grades_attendance.php">Notas</a>
+            
+            <h4 class="sidenav-title">JOGO</h4>
+            <a href="user/user.php">Usuário de jogo</a>
+        </div>
+        <h5 class="logo-title">2022© Anemo System. All rights reserved</h5>
     </body>
+    <script type="text/javascript">
+        /* Set the width of the side navigation to 250px */
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+        }
+
+        /* Set the width of the side navigation to 0 */
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+        }     
+    </script>
 </html>
