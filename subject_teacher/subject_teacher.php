@@ -19,6 +19,7 @@
         <title>Cadastrar Professores e suas Matérias</title>
     </head>
     <body>
+		<a href="../index.html"><button>Voltar</button></a>
         <form method="POST">
             <div class="form" id="insert-form">
 				<label for="teacher">Professor:</label>
@@ -86,6 +87,5 @@
                 </table>
             </div>
         </form>
-		<a href="../index.html"><button>Voltar</button></a>
     </body>
 </html>

@@ -26,6 +26,7 @@
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
     </head>
     <body>
+		<a href="../index.html"><button>Voltar</button></a>
         <form method="POST">
             <div class="form" id="insert-form">
 				<label for="name">Nome de Usuário:</label>
@@ -92,6 +93,5 @@
                 </table>
             </div>
         </form>
-		<a href="../index.html"><button>Voltar</button></a>
     </body>
 </html>

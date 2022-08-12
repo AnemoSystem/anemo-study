@@ -18,6 +18,7 @@
         <title>Cadastrar Ano Escolar</title>
     </head>
     <body>
+        <a href="../index.html"><button>Voltar</button></a>
         <form method="POST">
             <div class="form" id="insert-form">
 				<label for="name">Nome:</label>
@@ -59,6 +60,5 @@
                 </table>
             </div>
         </form>
-		<a href="../index.html"><button>Voltar</button></a>
     </body>
 </html>
