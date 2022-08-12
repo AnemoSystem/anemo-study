@@ -30,9 +30,7 @@
 ?>
 <html lang="pt">
     <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<?php include ('../head.html'); ?>
         <title>Editar Funcionário</title>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
@@ -41,15 +39,15 @@
 		<form method="POST">
 			<h3>ID: <?php echo $id; ?></h3>
 			<label for="name">Nome:</label>
-            <input type="text" name="name" id="name" placeholder="Digite o nome" value='<?php echo $name; ?>'><br>
+            <input type="text" name="name" id="name" placeholder="Digite o nome" value='<?php echo $name; ?>'>
 			<label for="email">E-mail:</label>
             <input type="email" name="email" id="email" placeholder="Digite o e-mail" value='<?php echo $email; ?>'><br>
 			<label for="cpf">CPF:</label>
-            <input type="text" name="cpf" id="cpf" placeholder="Digite o CPF" value='<?php echo $cpf; ?>'><br>
+            <input type="text" name="cpf" id="cpf" placeholder="Digite o CPF" value='<?php echo $cpf; ?>'>
 			<label for="rg">RG:</label>
             <input type="text" name="rg" id="rg" placeholder="Digite o RG" value='<?php echo $rg; ?>'><br>
 			<label for="phone">Telefone:</label>
-            <input type="text" name="phone" id="phone" placeholder="Digite o Telefone" value='<?php echo $phone; ?>'><br>
+            <input type="text" name="phone" id="phone" placeholder="Digite o Telefone" value='<?php echo $phone; ?>'>
 			<label for="salary">Salário:</label>
             <input type="number" name="salary" id="salary" placeholder="Digite o salário" value='<?php echo $salary; ?>'><br>
 			<label for="function">Função:</label>

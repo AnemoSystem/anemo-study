@@ -43,9 +43,7 @@
 ?>
 <html lang="pt">
     <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<?php include ('../head.html'); ?>
         <title>Cadastrar Aluno</title>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
@@ -54,15 +52,15 @@
         <form method="POST">
             <div class="form" id="insert-form">
 				<label for="name">Nome:</label>
-                <input type="text" name="name" id="name" placeholder="Digite o nome"><br>
+                <input type="text" name="name" id="name" placeholder="Digite o nome">
 				<label for="email">E-mail:</label>
                 <input type="email" name="email" id="email" placeholder="Digite o e-mail"><br>
 				<label for="cpf">CPF:</label>
-                <input type="text" name="cpf" id="cpf" placeholder="Digite o CPF"><br>
+                <input type="text" name="cpf" id="cpf" placeholder="Digite o CPF">
 				<label for="rg">RG:</label>
                 <input type="text" name="rg" id="rg" placeholder="Digite o RG"><br>
 				<label for="phone">Telefone:</label>
-                <input type="text" name="phone" id="phone" placeholder="Digite o telefone"><br>
+                <input type="text" name="phone" id="phone" placeholder="Digite o telefone">
 				<label for="classroom">Sala:</label>
 				<select name="classroom" id="classroom">
 					<?php
