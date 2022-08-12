@@ -15,39 +15,55 @@
 ?>
 <html lang="pt">
     <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<?php include ('../head.html'); ?>
         <title>Cadastrar Sala</title>
     </head>
     <body>
+		<div class="main">
         <form method="POST">
             <div class="form" id="insert-form">
-				<label for="grade">Ano Escolar:</label>
-				<select name="grade" id="grade">
-					<?php
-						$sql = "SELECT * FROM grade ORDER BY id";
-						$query = mysqli_query($connection, $sql);
-						while($row = mysqli_fetch_assoc($query)) {
-							$id = $row['id'];
-							$name = $row['name'];	
-							echo '<option value="'.$id.'">'.$name.'</option>';
-						}
-					?>
-				</select><br>
-				<label for="period">Período Escolar:</label>
-				<select name="period" id="period">
-					<?php
-						$sql = "SELECT * FROM period ORDER BY id";
-						$query = mysqli_query($connection, $sql);
-						while($row = mysqli_fetch_assoc($query)) {
-							$id = $row['id'];
-							$name = $row['name'];
-							echo '<option value="'.$id.'">'.$name.'</option>';
-						}
-					?>
-				</select><br>
-                <input type="submit" name="submit" value="Enviar">
+				<table>
+					<tr class="table-header">
+						<th>Cadastrar</th>
+					</tr>
+					<tr>
+						<th>
+							<label for="grade">Ano Escolar:</label>
+							<select name="grade" id="grade">
+								<?php
+									$sql = "SELECT * FROM grade ORDER BY id";
+									$query = mysqli_query($connection, $sql);
+									while($row = mysqli_fetch_assoc($query)) {
+										$id = $row['id'];
+										$name = $row['name'];	
+										echo '<option value="'.$id.'">'.$name.'</option>';
+									}
+								?>
+							</select><br>
+						</th>
+					</tr>
+					<tr>
+						<th>
+							<label for="period">Período Escolar:</label>
+							<select name="period" id="period">
+								<?php
+									$sql = "SELECT * FROM period ORDER BY id";
+									$query = mysqli_query($connection, $sql);
+									while($row = mysqli_fetch_assoc($query)) {
+										$id = $row['id'];
+										$name = $row['name'];
+										echo '<option value="'.$id.'">'.$name.'</option>';
+									}
+								?>
+							</select><br>
+						</th>
+					</tr>
+					<tr>
+						<th>
+							<input class="myBtn" type="submit" name="submit" value="Enviar">
+						</th>
+					</tr>
+				</table>
             </div>
             <div class="list">
                 <table>
@@ -75,8 +91,8 @@
 									echo '<td>'.$id.'</td>';
 									echo '<td>'.$grade_name.'</td>';
 									echo '<td>'.$period_name.'</td>';
-									echo '<td><button name="delete" value="'.$id.'">Deletar</button>';
-									echo '<a href="edit.php?id='.$id.'"><input type="button" value="Editar"></a></td>';
+									echo '<td><button class="myBtn" name="delete" value="'.$id.'">Deletar</button>';
+									echo '<a href="edit.php?id='.$id.'"><input class="myBtn" type="button" value="Editar"></a></td>';
 									echo '</tr>';
 								}
 							}
@@ -89,6 +105,7 @@
                 </table>
             </div>
         </form>
-		<a href="../index.html"><button>Voltar</button></a>
+		<a href="../index.php"><button class="myBtn">Voltar</button></a>
+		</div>
     </body>
 </html>

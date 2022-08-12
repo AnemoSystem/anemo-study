@@ -23,42 +23,59 @@
 ?>
 <html lang="pt">
     <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<?php include ('../head.html'); ?>
         <title>Cadastrar Funcionário</title>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
     </head>
     <body>
-        <form method="POST">
-            <div class="form" id="insert-form">
-				<label for="name">Nome:</label>
-                <input type="text" name="name" id="name" placeholder="Digite o nome"><br>
-				<label for="email">E-mail:</label>
-                <input type="email" name="email" id="email" placeholder="Digite o e-mail"><br>
-				<label for="cpf">CPF:</label>
-                <input type="text" name="cpf" id="cpf" placeholder="Digite o CPF"><br>
-				<label for="rg">RG:</label>
-                <input type="text" name="rg" id="rg" placeholder="Digite o RG"><br>
-				<label for="phone">Telefone:</label>
-                <input type="text" name="phone" id="phone" placeholder="Digite o telefone"><br>
-				<label for="salary">Salário:</label>
-                <input type="number" name="salary" id="salary" placeholder="Digite o salário"><br>
-				<label for="function">Função:</label>
-				<select name="function" id="function">
-					<?php
-						$sql = "SELECT * FROM function ORDER BY id";
-						$query = mysqli_query($connection, $sql);
-						while($row = mysqli_fetch_assoc($query)) {
-							$id = $row['id'];
-							$name = $row['name'];	
-							echo '<option value="'.$id.'">'.$id.' - '.$name.'</option>';
-						}
-					?>
-				</select><br>
-				<input type="submit" name="submit" value="Enviar">
-            </div>
+        <div class="main">
+		<form method="POST">
+			<table>
+				<tr class="table-header">
+					<th>Cadastrar</th>
+				</tr>
+				<div class="form" id="insert-form">
+					<tr><th>
+					<label for="name">Nome:</label>
+					<input type="text" name="name" id="name" placeholder="Digite o nome">
+					</th></tr>
+					<tr><th>
+					<label for="email">E-mail:</label>
+					<input type="email" name="email" id="email" placeholder="Digite o e-mail">
+					</th></tr>
+					<tr><th>
+					<label for="cpf">CPF:</label>
+					<input type="text" name="cpf" id="cpf" placeholder="Digite o CPF">
+					</th></tr>
+					<tr><th>
+					<label for="rg">RG:</label>
+					<input type="text" name="rg" id="rg" placeholder="Digite o RG"><br>
+					</th></tr>
+					<tr><th>
+					<label for="phone">Telefone:</label>
+					<input type="text" name="phone" id="phone" placeholder="Digite o telefone"><br>
+					</th></tr>
+					<tr><th>
+					<label for="salary">Salário:</label>
+					<input type="number" name="salary" id="salary" placeholder="Digite o salário"><br>
+					</th></tr>
+					<tr><th>
+					<label for="function">Função:</label>
+					<select name="function" id="function">
+						<?php
+							$sql = "SELECT * FROM function ORDER BY id";
+							$query = mysqli_query($connection, $sql);
+							while($row = mysqli_fetch_assoc($query)) {
+								$id = $row['id'];
+								$name = $row['name'];	
+								echo '<option value="'.$id.'">'.$id.' - '.$name.'</option>';
+							}
+						?>
+					</select>
+					<input class="myBtn" type="submit" name="submit" value="Enviar">
+					</th></tr>
+				</div>
             <div class="list">
                 <table>
                     <tr>
@@ -102,8 +119,8 @@
 									echo '<td>'.$phone.'</td>';
 									echo '<td>'.$salary.'</td>';
 									echo '<td>'.$function_id.' - '.$function_name.'</td>';
-									echo '<td><button name="delete" value="'.$id.'">Deletar</button>';
-									echo '<a href="edit.php?id='.$id.'"><input type="button" value="Editar"></a></td>';
+									echo '<td><button name="delete" class="myBtn" value="'.$id.'">Deletar</button>';
+									echo '<a href="edit.php?id='.$id.'"><input class="myBtn" type="button" value="Editar"></a></td>';
 									echo '</tr>';
 								}
 							}
@@ -113,10 +130,13 @@
 							mysqli_close($connection);
                         ?>
                     </tr>
-                </table>
-            </div>
+            	</div>
+			</table>
         </form>
-		<a href="../index.html"><button>Voltar</button></a>
+		<tr><th>
+			<a href="../index.php"><button class="myBtn">Voltar</button></a>
+		</th></tr>
+		</div>
     </body>
 	<script type="text/javascript">
 		$("#cpf").mask("999.999.999-99");

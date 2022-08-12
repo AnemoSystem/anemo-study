@@ -18,47 +18,66 @@
 ?>
 <html lang="pt">
     <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<?php include ('../head.html'); ?>
         <title>Editar Sala</title>
     </head>
     <body>
-		<form method="POST">
-			<h3>ID: <?php echo $id; ?></h3>
-			<label for="grade">Ano Escolar:</label>
-			<select name="grade" id="grade">
-				<?php
-					$sql = "SELECT * FROM grade ORDER BY id";
-					$query = mysqli_query($connection, $sql);
-					while($row = mysqli_fetch_assoc($query)) {
-						$id = $row['id'];
-						$name = $row['name'];
-						if($id == $grade_id)
-							echo '<option value="'.$id.'" selected>'.$name.'</option>';
-						else
-							echo '<option value="'.$id.'">'.$name.'</option>';
-					}
-				?>
-			</select><br>
-			<label for="period">Período Escolar:</label>
-			<select name="period" id="period">
-				<?php
-					$sql = "SELECT * FROM period ORDER BY id";
-					$query = mysqli_query($connection, $sql);
-					while($row = mysqli_fetch_assoc($query)) {
-						$id = $row['id'];
-						$name = $row['name'];
-						if($id == $period_id)
-							echo '<option value="'.$id.'" selected>'.$name.'</option>';
-						else
-							echo '<option value="'.$id.'">'.$name.'</option>';
-					}
-					mysqli_close($connection);
-				?>
-			</select><br>
-            <input type="submit" name="submit" value="Editar">
-		</form>
+		<div class="main">
+			<table>
+				<form method="POST">
+					<tr class="table-header">
+						<th>Editar cadastro</th>
+					</tr>
+					<tr>
+						<th><h3>ID: <?php echo $id; ?></h3></th>
+					</tr>
+					<tr>
+					<th>
+						<label for="grade">Ano Escolar: </label>
+						<select name="grade" id="grade">
+							<?php
+								$sql = "SELECT * FROM grade ORDER BY id";
+								$query = mysqli_query($connection, $sql);
+								while($row = mysqli_fetch_assoc($query)) {
+									$id = $row['id'];
+									$name = $row['name'];
+									if($id == $grade_id)
+										echo '<option value="'.$id.'" selected>'.$name.'</option>';
+									else
+										echo '<option value="'.$id.'">'.$name.'</option>';
+								}
+							?>
+						</select><br>
+					</th>
+					</tr>
+					<tr>
+					<th>
+					<label for="period">Período Escolar: </label>
+					<select name="period" id="period">
+						<?php
+							$sql = "SELECT * FROM period ORDER BY id";
+							$query = mysqli_query($connection, $sql);
+							while($row = mysqli_fetch_assoc($query)) {
+								$id = $row['id'];
+								$name = $row['name'];
+								if($id == $period_id)
+									echo '<option value="'.$id.'" selected>'.$name.'</option>';
+								else
+									echo '<option value="'.$id.'">'.$name.'</option>';
+							}
+							mysqli_close($connection);
+						?>
+					</select><br>
+					</th>
+					</tr>
+					<tr>
+					<th>
+					<input class="myBtn" type="submit" name="submit" value="Editar">
+					</th>
+					</tr>
+				</form>
+			<table>
+		</div>
 	</body>
-	<a href="classroom.php"><button>Voltar</button></a>
+	<a href="classroom.php"><button class="myBtn">Voltar</button></a>
 </html>

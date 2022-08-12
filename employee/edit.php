@@ -30,28 +30,45 @@
 ?>
 <html lang="pt">
     <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<?php include ('../head.html'); ?>
         <title>Editar Funcionário</title>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
     </head>
     <body>
+		<div class="main">
 		<form method="POST">
+			<table>
+			<tr class="table-header">
+				<th>Editar cadastro</th>
+			</tr>
+			<tr><th>
 			<h3>ID: <?php echo $id; ?></h3>
+			</tr></th>
 			<label for="name">Nome:</label>
             <input type="text" name="name" id="name" placeholder="Digite o nome" value='<?php echo $name; ?>'><br>
+			
+			<tr><th>
 			<label for="email">E-mail:</label>
             <input type="email" name="email" id="email" placeholder="Digite o e-mail" value='<?php echo $email; ?>'><br>
+			
+			<tr><th>
 			<label for="cpf">CPF:</label>
             <input type="text" name="cpf" id="cpf" placeholder="Digite o CPF" value='<?php echo $cpf; ?>'><br>
+			
+			<tr><th>
 			<label for="rg">RG:</label>
             <input type="text" name="rg" id="rg" placeholder="Digite o RG" value='<?php echo $rg; ?>'><br>
+			
+			<tr><th>
 			<label for="phone">Telefone:</label>
             <input type="text" name="phone" id="phone" placeholder="Digite o Telefone" value='<?php echo $phone; ?>'><br>
+			
+			<tr><th>
 			<label for="salary">Salário:</label>
             <input type="number" name="salary" id="salary" placeholder="Digite o salário" value='<?php echo $salary; ?>'><br>
+			
+			<tr><th>
 			<label for="function">Função:</label>
 			<select name="function" id="function">
 				<?php
@@ -70,6 +87,7 @@
 			<input type="submit" name="submit" value="Editar">
 		</form>
 		<a href="employee.php"><button>Voltar</button></a>
+		</div>
 	</body>
 	<script type="text/javascript">
 		$("#cpf").mask("999.999.999-99");
