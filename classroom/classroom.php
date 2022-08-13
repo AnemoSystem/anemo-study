@@ -19,7 +19,7 @@
         <title>Cadastrar Sala</title>
     </head>
     <body>
-		<a href="../index.html"><button>Voltar</button></a>
+		<a href="../index.php"><button>Voltar</button></a>
         <form method="POST">
             <div class="form" id="insert-form">
 				<label for="grade">Ano Escolar:</label>
