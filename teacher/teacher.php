@@ -8,9 +8,8 @@
 		$phone = $_POST['phone'];
 		$salary = $_POST['salary'];
 		$password = strval(rand(1000, 9999));
-		$e_password = password_hash($password, PASSWORD_DEFAULT);
         $sql = "INSERT INTO teacher (email, password, name, cpf, rg, phone, salary) 
-		VALUES ('$email', '$e_password', '$name', '$cpf', '$rg', '$phone', '$salary')";
+		VALUES ('$email', '$password', '$name', '$cpf', '$rg', '$phone', '$salary')";
         $query = mysqli_query($connection, $sql);
     }
     else if(isset($_POST['delete'])) {
