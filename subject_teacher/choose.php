@@ -10,6 +10,7 @@
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
     </head>
     <body>
+        <a href="../index.php"><button>Voltar</button></a>
         <h1 style="margin: 40px;">Selecione uma matéria</h1>
         <?php
             $sql = "SELECT id, name FROM subject;";
