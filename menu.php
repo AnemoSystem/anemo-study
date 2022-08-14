@@ -1,7 +1,7 @@
 <?php
     session_start();
 
-    if(isset($_POST['logout'])){
+    if(isset($_POST['logout']) || $_SESSION["type"] == "none"){
         header("location: index.php");
         $_SESSION["type"] = "none";
     }
@@ -26,6 +26,7 @@
             <form method="POST">
                 <input type="submit" value="Sair" name="logout">
             </form>
+            <h5 class="logo-title" style="margin-top: 20px;">2022© Anemo System. All rights reserved</h5>
         </div>
         <div class="sidenav" id="mySidenav">
             <h4 class="sidenav-title">ESCOLA</h4>
@@ -36,17 +37,17 @@
             <a href="grade/grade.php">Ano Escolar</a>
             <a href="period/period.php">Período</a>
             <a href="teacher/teacher.php">Professor</a>
-            <a href="subject_teacher/subject_teacher.php">Professores e suas Matérias</a>
+            <a href="subject_teacher/subject_teacher.php">Aulas</a>
             <a href="classroom/classroom.php">Sala</a>
             <?php endif; ?>
-            <a href="student/student.php">Estudante</a>
+            <a href="student/choose.php">Estudante</a>
             <a href="grades_attendance/grades_attendance.php">Notas</a>
+            <a href="grades_attendance/grades_attendance.php">Faltas e Presenças</a>
             <?php if($_SESSION['type'] == "admin"): ?>
             <h4 class="sidenav-title">JOGO</h4>
             <a href="user/user.php">Usuário de jogo</a>
             <?php endif; ?>
         </div>
-        <h5 class="logo-title">2022© Anemo System. All rights reserved</h5>
     </body>
     <script type="text/javascript">
         /* Set the width of the side navigation to 250px */
