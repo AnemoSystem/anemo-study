@@ -31,21 +31,22 @@
         <form method="POST">
             <div class="form" id="insert-form">
 				<label for="name">Nome:</label>
-                <input type="text" name="name" id="name" placeholder="Digite o nome"><br>
+                <input type="text" name="name" id="name" placeholder="Digite o nome">
 				<label for="email">E-mail:</label>
                 <input type="email" name="email" id="email" placeholder="Digite o e-mail"><br>
 				<label for="cpf">CPF:</label>
-                <input type="text" name="cpf" id="cpf" placeholder="Digite o CPF"><br>
+                <input type="text" name="cpf" id="cpf" placeholder="Digite o CPF">
 				<label for="rg">RG:</label>
                 <input type="text" name="rg" id="rg" placeholder="Digite o RG"><br>
 				<label for="phone">Telefone:</label>
-                <input type="text" name="phone" id="phone" placeholder="Digite o telefone"><br>
+                <input type="text" name="phone" id="phone" placeholder="Digite o telefone">
 				<label for="salary">Salário:</label>
                 <input type="number" name="salary" id="salary" placeholder="Digite o salário"><br>
-				<input type="submit" name="submit" value="Enviar">
+				<input type="submit" name="submit" value="Enviar"><br>
+				<input type="text" placeholder="Pesquisar por nome" id="searchbar" onkeyup="filter();">
             </div>
             <div class="list">
-                <table>
+                <table id="list_table">
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>
@@ -72,9 +73,9 @@
 									$cpf = $row['cpf'];
 									$phone = $row['phone'];
 									$salary = $row['salary'];
-									echo '<tr>';
+									echo '<tr class="tb_search">';
 									echo '<td>'.$id.'</td>';
-									echo '<td>'.$name.'</td>';
+									echo '<td class="tb_name">'.$name.'</td>';
 									echo '<td>'.$email.'</td>';
 									echo '<td>'.$cpf.'</td>';
 									echo '<td>'.$rg.'</td>';
