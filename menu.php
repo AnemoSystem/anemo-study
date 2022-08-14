@@ -38,7 +38,7 @@
             <a href="subject/subject.php">Matéria</a>
             <a href="period/period.php">Período</a>
             <a href="teacher/teacher.php">Professor</a>
-            <a href="teacher/teacher.php">Professor por Sala</a>
+            <a href="teacher_classroom/teacher_classroom.php">Professor por Sala</a>
             <a href="classroom/classroom.php">Sala</a>
             <?php endif; ?>
             <a href="student/choose.php">Estudante</a>
