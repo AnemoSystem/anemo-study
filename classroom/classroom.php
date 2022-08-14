@@ -1,5 +1,8 @@
 <?php
     include '../connection.php';
+
+	include '../test_session.php';
+
     if(isset($_POST['submit'])) {
 		$grade = $_POST['grade'];
 		$period = $_POST['period'];

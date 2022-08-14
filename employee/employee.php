@@ -56,10 +56,11 @@
 						}
 					?>
 				</select><br>
-				<input type="submit" name="submit" value="Enviar">
+				<input type="submit" name="submit" value="Enviar"><br>
+				<input type="text" placeholder="Pesquisar por nome" id="searchbar" onkeyup="filter();">
             </div>
             <div class="list">
-                <table>
+                <table id="list_table">
                     <tr>
                         <th>ID</th>
                         <th>Nome</th>
@@ -92,9 +93,9 @@
 									$salary = $row[6];
 									$function_id = $row[7];
 									$function_name = $row[8];
-									echo '<tr>';
+									echo '<tr class="tb_search">';
 									echo '<td>'.$id.'</td>';
-									echo '<td>'.$name.'</td>';
+									echo '<td class="tb_name">'.$name.'</td>';
 									echo '<td>'.$email.'</td>';
 									echo '<td>'.$cpf.'</td>';
 									echo '<td>'.$rg.'</td>';

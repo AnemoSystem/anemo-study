@@ -1,5 +1,8 @@
 <?php
 	include "../connection.php";
+
+	include '../test_session.php';
+	
 	$id = $_GET['id'];
     $sql = "SELECT * FROM classroom";
     $query = mysqli_query($connection, $sql);
