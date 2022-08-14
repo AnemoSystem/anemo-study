@@ -31,13 +31,14 @@
         <div class="sidenav" id="mySidenav">
             <h4 class="sidenav-title">ESCOLA</h4>
             <?php if($_SESSION['type'] == "admin"): ?>
+            <a href="grade/grade.php">Ano Escolar</a>
+            <a href="subject_teacher/choose.php">Aulas</a>
             <a href="function/function.php">Função</a>
             <a href="employee/employee.php">Funcionário</a>
             <a href="subject/subject.php">Matéria</a>
-            <a href="grade/grade.php">Ano Escolar</a>
             <a href="period/period.php">Período</a>
             <a href="teacher/teacher.php">Professor</a>
-            <a href="subject_teacher/subject_teacher.php">Aulas</a>
+            <a href="teacher/teacher.php">Professor por Sala</a>
             <a href="classroom/classroom.php">Sala</a>
             <?php endif; ?>
             <a href="student/choose.php">Estudante</a>
