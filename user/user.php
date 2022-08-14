@@ -29,8 +29,8 @@
 		<a href="../index.php"><button>Voltar</button></a>
         <form method="POST">
             <div class="form" id="insert-form">
-				<label for="name">Nome de Usuário:</label>
-                <input type="text" name="name" id="name" placeholder="Digite o nome"><br>
+				<label for="username">Nome de Usuário:</label>
+                <input type="text" name="username" id="username" placeholder="Digite o nome"><br>
 				<label for="password">Senha:</label>
                 <input type="password" name="password" id="password" placeholder="Digite a senha"><br>
 				<label for="student">Estudante:</label>
@@ -66,11 +66,13 @@
 							$query = mysqli_query($connection, $sql);
 							$row = mysqli_fetch_row($query);
 							if($row[0] != 0) {
-								$sql = "SELECT user.user_nickname, student.id, student.name, grade.name, period.name FROM user
+								$sql = "SELECT user.user_nickname, student.id, 
+								student.name, grade.name, period.name, user.id FROM user
 								INNER JOIN student ON student.id = user.student_id
 								INNER JOIN classroom ON classroom.id = student.classroom_id
 								INNER JOIN grade ON grade.id = classroom.grade_id
-								INNER JOIN period ON period.id = classroom.period_id";
+								INNER JOIN period ON period.id = classroom.period_id
+								ORDER BY user.id";
 								$query = mysqli_query($connection, $sql);
 								while($row = mysqli_fetch_row($query)) {
 									$username = $row[0];
@@ -78,6 +80,7 @@
 									$student_name = $row[2];
 									$grade = $row[3];
 									$period = $row[4];
+									$id = $row[5];
 									echo '<tr class="tb_search">';
 									echo '<td class="tb_name">'.$username.'</td>';
 									echo '<td>'.$id_student.' - '.$student_name.' ('.$grade.' - '.$period.')</td>';
