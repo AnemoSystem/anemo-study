@@ -50,13 +50,15 @@
 						}
 					?>
 				</select><br>
-				<input type="submit" name="submit" value="Enviar">
+				<input type="submit" name="submit" value="Enviar"><br>
+				<input type="text" placeholder="Pesquisar por nome" id="searchbar" onkeyup="filter();">
             </div>
             <div class="list">
-                <table>
+                <table id="list_table">
                     <tr>
                         <th>Nome de usuário</th>
                         <th>Estudante</th>
+						<th>Ações</th>
                     </tr>
                     <tr>
                         <?php
@@ -76,8 +78,8 @@
 									$student_name = $row[2];
 									$grade = $row[3];
 									$period = $row[4];
-									echo '<tr>';
-									echo '<td>'.$username.'</td>';
+									echo '<tr class="tb_search">';
+									echo '<td class="tb_name">'.$username.'</td>';
 									echo '<td>'.$id_student.' - '.$student_name.' ('.$grade.' - '.$period.')</td>';
 									echo '<td><button name="delete" value="'.$id.'">Deletar</button>';
 									echo '<a href="edit.php?id='.$id.'"><input type="button" value="Editar"></a></td>';
@@ -85,7 +87,7 @@
 								}
 							}
 							else {
-								echo '<tr><td colspan="2">Não existem usuários de jogo cadastrados ainda!</td></tr>';
+								echo '<tr><td colspan="3">Não existem usuários de jogo cadastrados ainda!</td></tr>';
 							}
 							mysqli_close($connection);
                         ?>
