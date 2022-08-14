@@ -3,7 +3,7 @@
 
     include "connection.php";
 
-    if($_SESSION["type"] == NULL)
+    if(is_null($_SESSION["type"]))
         $_SESSION["type"] = "none";
     else if($_SESSION["type"] != "none")
         header("location: menu.php");
