@@ -22,12 +22,14 @@
 		$query = mysqli_query($connection, $sql);
 		while($column = mysqli_fetch_row($query)) {
 			if($t != $column[0]) {
-				$sql = "INSERT INTO grades_attendance (subject_teacher_id, student_id, grade_value, school_month)
-				VALUES ('".$column[0]."', '".$id[0]."', '-1', '1');";
-				mysqli_query($connection, $sql);
+				for($i = 1; $i <= 4; $i++) {
+					$sql = "INSERT INTO grades_attendance (subject_teacher_id, student_id, grade_value, school_month)
+					VALUES ('".$column[0]."', '".$id[0]."', '-1', '".$i."');";
+					mysqli_query($connection, $sql);
+				}
 				$t = $column[0];
 			}
-		}		
+		}
     }
     else if(isset($_POST['delete'])) {
         $id_selected = $_POST['delete'];
