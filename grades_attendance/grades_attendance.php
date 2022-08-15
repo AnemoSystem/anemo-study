@@ -73,60 +73,50 @@
                 <input type="submit" name="submit" value="Enviar">
             </div>
             <div class="list">
-                <table>
-                    <tr>
-						<th>Professor</th>
-						<th>Disciplina</th>
-						<th>Estudante</th>
-                        <th>Nota</th>
-						<th>Bimestre</th>
-                    </tr>
-                    <tr>
-                        <?php
-							$sql = "SELECT COUNT(*) FROM grades_attendance";
+				<table>		
+					<?php
+						$sql = "SELECT COUNT(*) FROM grades_attendance";
+						$query = mysqli_query($connection, $sql);
+						$row = mysqli_fetch_row($query);
+						if($row[0] != 0) {
+							$sql = "SELECT grades_attendance.id, teacher.id, grades_attendance.student_id, 
+							grades_attendance.grade_value, teacher.name, subject.name, student.name,
+							grade.name, period.name, grades_attendance.school_month FROM grades_attendance
+							INNER JOIN subject_teacher ON grades_attendance.subject_teacher_id = subject_teacher.id
+							INNER JOIN teacher ON teacher.id = subject_teacher.teacher_id
+							INNER JOIN subject ON subject.id = subject_teacher.subject_id
+							INNER JOIN student ON student.id = grades_attendance.student_id
+							INNER JOIN classroom ON student.classroom_id = classroom.id
+							INNER JOIN grade ON grade.id = classroom.grade_id
+							INNER JOIN period ON period.id = classroom.period_id
+							ORDER BY student.id";
 							$query = mysqli_query($connection, $sql);
-							$row = mysqli_fetch_row($query);
-							if($row[0] != 0) {
-								$sql = "SELECT grades_attendance.id, teacher.id, grades_attendance.student_id, 
-								grades_attendance.grade_value, teacher.name, subject.name, student.name,
-								grade.name, period.name, grades_attendance.school_month FROM grades_attendance
-								INNER JOIN subject_teacher ON grades_attendance.subject_teacher_id = subject_teacher.id
-								INNER JOIN teacher ON teacher.id = subject_teacher.teacher_id
-								INNER JOIN subject ON subject.id = subject_teacher.subject_id
-								INNER JOIN student ON student.id = grades_attendance.student_id
-								INNER JOIN classroom ON student.classroom_id = classroom.id
-								INNER JOIN grade ON grade.id = classroom.grade_id
-								INNER JOIN period ON period.id = classroom.period_id";
-								$query = mysqli_query($connection, $sql);
-								while($column = mysqli_fetch_row($query)) {
-									$id = $column[0];
-									$teacher_id = $column[1];
-									$student_id = $column[2];
-									$grade_value = $column[3];
-									$teacher_name = $column[4];
-									$subject_name = $column[5];
-									$student_name = $column[6];
-									$grade_name = $column[7];
-									$period_name = $column[8];
-									$month = $column[9];
-									echo '<tr>';
-									echo '<td>'.$teacher_id.' - '.$teacher_name.'</td>';
-									echo '<td>'.$subject_name.'</td>';
-									echo '<td>'.$student_id.' - '.$student_name.' ('.$grade_name.' - '.$period_name.')</td>';
-									echo '<td>'.$grade_value.'</td>';
-									echo '<td>'.$month.'</td>';
-									echo '<td><button name="delete" value="'.$id.'">Deletar</button>';
-									echo '<a href="edit.php?id='.$id.'"><input type="button" value="Editar"></a></td>';
-									echo '</tr>';
-								}
+							while($column = mysqli_fetch_row($query)) {
+								$id = $column[0];
+								$teacher_id = $column[1];
+								$student_id = $column[2];
+								$grade_value = $column[3];
+								$teacher_name = $column[4];
+								$subject_name = $column[5];
+								$student_name = $column[6];
+								$grade_name = $column[7];
+								$period_name = $column[8];
+								$month = $column[9];
+								echo '<tr>';
+								echo '<td>'.$student_id.' - '.$student_name.' ('.$grade_name.' - '.$period_name.')</td>';
+								echo '<td><ul><li>'.$subject_name.'- '$teacher_name'</li><ul>';
+								echo '<li>$'
+								echo '<td><button name="delete" value="'.$id.'">Deletar</button>';
+								echo '<a href="edit.php?id='.$id.'"><input type="button" value="Editar"></a></td>';
+								echo '</tr>';
 							}
-							else {
-								echo '<tr><td colspan="4">Não existem notas cadastradas ainda!</td></tr>';
-							}
-							mysqli_close($connection);
-                        ?>
-                    </tr>
-                </table>
+						}
+						else {
+							echo '<tr><td colspan="4">Não existem notas cadastradas ainda!</td></tr>';
+						}
+						mysqli_close($connection);
+					?>
+				</table>
             </div>
         </form>
     </body>
