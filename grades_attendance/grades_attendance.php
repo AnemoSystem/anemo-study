@@ -1,80 +1,24 @@
 <?php
     include '../connection.php';
-    if(isset($_POST['submit'])) {
-		$subject_teacher = $_POST['subject-teacher'];
-		$student = $_POST['student'];
-		$grade_value = $_POST['grade-value'];
-		$month = $_POST['month'];
-        $sql = "INSERT INTO grades_attendance (subject_teacher_id, student_id, grade_value, school_month) 
-		VALUES ($subject_teacher, $student, $grade_value, $month)";
-        $query = mysqli_query($connection, $sql);
-    }
-    else if(isset($_POST['delete'])) {
-        $id_selected = $_POST['delete'];
-        $sql = "DELETE FROM grades_attendance WHERE id = $id_selected";
-        mysqli_query($connection, $sql);
-        header("Refresh:0");
-    }
+	$classroom_id = $_GET['id'];
+	session_start();
+	$_SESSION['classroom'] = $classroom_id;
 ?>
 <html lang="pt">
     <head>
 		<?php include ('../head.html'); ?>
-        <title>Cadastrar Notas</title>
+        <title>Controle de Notas</title>
     </head>
     <body>
 		<a href="../index.php"><button>Voltar</button></a>
+		<input type="text" style="margin-top: 20px;" placeholder="Pesquisar por nome" id="searchbar" onkeyup="filter();">
         <form method="POST">
-            <div class="form" id="insert-form">
-				<label for="subject-teacher">Professor e Disciplina:</label>
-				<select name="subject-teacher" id="subject-teacher">
-					<?php
-						$sql = "SELECT subject_teacher.id, teacher.id, teacher.name, subject.name 
-						FROM subject_teacher
-						INNER JOIN teacher ON teacher.id = subject_teacher.teacher_id
-						INNER JOIN subject ON subject.id = subject_teacher.subject_id
-						ORDER BY subject_teacher.id";
-						$query = mysqli_query($connection, $sql);
-						while($column = mysqli_fetch_row($query)) {
-							$id = $column[0];
-							$teacher_id = $column[1];
-							$teacher_name = $column[2];
-							$subject = $column[3];
-							echo '<option value="'.$id.'">'.$teacher_id.' - '.$teacher_name.' ('.$subject.')</option>';
-						}
-					?>
-				</select><br>
-				<label for="student">Estudante:</label>
-				<select name="student" id="student">
-					<?php
-						$sql = "SELECT student.id, student.name, grade.name, period.name FROM student
-						INNER JOIN classroom ON student.classroom_id = classroom.id
-						INNER JOIN grade ON grade.id = classroom.grade_id
-						INNER JOIN period ON period.id = classroom.period_id
-						ORDER BY student.id";
-						$query = mysqli_query($connection, $sql);
-						while($column = mysqli_fetch_row($query)) {
-							$id = $column[0];
-							$student = $column[1];
-							$grade = $column[2];
-							$period = $column[3];
-							echo '<option value="'.$id.'">'.$id.' - '.$student.' ('.$grade.' - '.$period.')</option>';
-						}
-					?>
-				</select><br>
-				<label for="grade-value">Nota:</label>
-				<input type="number" name="grade-value" id="grade-value" min="0" max="10"><br>
-				<label for="month">Bimestre:</label>
-				<select name="month" id="month">
-					<option value="1">1º</option>
-					<option value="2">2º</option>
-					<option value="3">3º</option>
-					<option value="4">4º</option>
-				</select><br>
-                <input type="submit" name="submit" value="Enviar">
-            </div>
             <div class="list">
-				<table>		
+				<table id="list_table">		
 					<?php
+						$check = "";
+						$check_t = "";
+						$can_close = False;
 						$sql = "SELECT COUNT(*) FROM grades_attendance";
 						$query = mysqli_query($connection, $sql);
 						$row = mysqli_fetch_row($query);
@@ -89,7 +33,9 @@
 							INNER JOIN classroom ON student.classroom_id = classroom.id
 							INNER JOIN grade ON grade.id = classroom.grade_id
 							INNER JOIN period ON period.id = classroom.period_id
-							ORDER BY student.id";
+							WHERE student.classroom_id = '$classroom_id'
+							ORDER BY student.id, grades_attendance.subject_teacher_id, 
+							grades_attendance.school_month;";
 							$query = mysqli_query($connection, $sql);
 							while($column = mysqli_fetch_row($query)) {
 								$id = $column[0];
@@ -102,17 +48,30 @@
 								$grade_name = $column[7];
 								$period_name = $column[8];
 								$month = $column[9];
-								echo '<tr>';
-								echo '<td>'.$student_id.' - '.$student_name.' ('.$grade_name.' - '.$period_name.')</td>';
-								echo '<td><ul><li>'.$subject_name.'- '$teacher_name'</li><ul>';
-								echo '<li>$'
-								echo '<td><button name="delete" value="'.$id.'">Deletar</button>';
-								echo '<a href="edit.php?id='.$id.'"><input type="button" value="Editar"></a></td>';
-								echo '</tr>';
+								if($check != strval($student_id)) {
+									if($can_close) echo '</ul></td></tr>';
+									$check = strval($student_id);
+									echo '<tr class="tb_search">';
+									echo '<td class="tb_name">'.$student_id.' - '.$student_name.'</td>';
+									echo '<td>';
+								}
+
+								if($check_t != strval($teacher_id)) {
+									$check_t = strval($teacher_id);
+									echo '<ul><li>'.$subject_name.' - '.$teacher_name.'</li><br><ul>';
+								}
+								
+								if($grade_value == "-1")
+									echo '<li>'.$month.'º Bimestre: ainda não definido</li><br>';
+								else {
+									echo '<li>'.$month.'º Bimestre: '.$grade_value.'';
+									echo ' <a href="edit.php?id='.$id.'">(Editar)</a></li><br>';
+								}
+								//echo '<td><button name="delete" value="'.$id.'">Deletar</button>';
+								//echo '<input type="button" value="Editar"></a>';
+								if($month == '4') echo '<br>';
+								$can_close = True;
 							}
-						}
-						else {
-							echo '<tr><td colspan="4">Não existem notas cadastradas ainda!</td></tr>';
 						}
 						mysqli_close($connection);
 					?>
