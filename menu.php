@@ -42,7 +42,7 @@
             <a href="classroom/classroom.php">Sala</a>
             <?php endif; ?>
             <a href="student/choose.php">Estudante</a>
-            <a href="grades_attendance/grades_attendance.php">Notas</a>
+            <a href="grades_attendance/choose.php">Notas</a>
             <a href="grades_attendance/grades_attendance.php">Faltas e Presenças</a>
             <?php if($_SESSION['type'] == "admin"): ?>
             <h4 class="sidenav-title">JOGO</h4>
