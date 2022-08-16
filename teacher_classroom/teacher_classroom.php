@@ -40,6 +40,7 @@
 						}
 					?>
 				</select><br>
+				<label for="classroom">Sala: </label>
 				<select name="classroom" id="classroom">
 					<?php
 						$sql = "SELECT classroom.id, grade.name, period.name from classroom
