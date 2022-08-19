@@ -22,6 +22,7 @@
                 echo "<input style='margin: 20px;' type='submit' value='".$row[1]." - ".$row[2]."'>";
                 echo "</a>";
             }
+            mysqli_close($connection);
         ?>
     </body>
 </html>
