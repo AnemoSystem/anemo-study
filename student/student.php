@@ -114,7 +114,7 @@
 							}
 						}
 						else {
-							echo '<tr><td colspan="9">Não existem funcionários cadastrados ainda!</td></tr>';
+							echo '<tr><td colspan="9">Não existem estudantes cadastrados ainda!</td></tr>';
 						}
 						mysqli_close($connection);
                     ?>
