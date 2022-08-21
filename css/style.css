@@ -136,6 +136,14 @@ select, input[type=time] {
     transition: 0.5s;
 }
 
+.present {
+    background-color: #5fda57;
+}
+
+.absent {
+    background-color: #da5757;
+}
+
 select:hover, input[type=time]:hover {
     background-color: blue;
 }
