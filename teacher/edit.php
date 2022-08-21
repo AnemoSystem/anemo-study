@@ -1,7 +1,7 @@
 <?php
 	include "../connection.php";
 	$id = $_GET['id'];
-	$sql = "SELECT * FROM teacher";
+	$sql = "SELECT * FROM teacher WHERE id = '$id'";
 	$query = mysqli_query($connection, $sql);
 	while($row = mysqli_fetch_assoc($query)) {
 		$id = $row['id'];
