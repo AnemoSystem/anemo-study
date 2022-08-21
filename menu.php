@@ -1,5 +1,6 @@
 <?php
     session_start();
+    include "connection.php";
 
     if(isset($_POST['logout']) || $_SESSION["type"] == "none"){
         header("location: index.php");
@@ -44,6 +45,16 @@
             <?php endif; ?>
             <a href="grades_attendance/choose.php">Notas</a>
             <a href="student_absence/choose_classroom.php">Faltas e Presenças</a>
+            <?php
+                if($_SESSION['type'] != "admin") {
+                    $sql = "SELECT id FROM teacher WHERE email = '".$_SESSION['email']."';";
+                    $query = mysqli_query($connection, $sql);
+                    while($row = mysqli_fetch_row($query)) {
+                        $teacher_id = $row[0];
+                        echo '<a href="teacher/edit.php?id='.$teacher_id.'">Editar conta</a>';
+                    }
+                }
+            ?>
             <?php if($_SESSION['type'] == "admin"): ?>
             <h4 class="sidenav-title">JOGO</h4>
             <a href="user/user.php">Usuário de jogo</a>
@@ -53,7 +64,7 @@
     <script type="text/javascript">
         /* Set the width of the side navigation to 250px */
         function openNav() {
-            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("mySidenav").style.width = "300px";
         }
 
         /* Set the width of the side navigation to 0 */
