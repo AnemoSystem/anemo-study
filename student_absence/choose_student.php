@@ -15,22 +15,33 @@
         <h1 style="margin: 40px;">Selecione um estudante</h1>
         <?php echo '<form method="POST" action="add_day.php?id='.$classroom_id.'">' ?>
             <input type="date" name="day" style="background-color: DodgerBlue; font-size: 25px; border-radius: 10px; padding: 10px; border: none;" />
-            <select name="subject_teacher" id="subject_teacher">
-                <?php
+            <?php
+                if($_SESSION['type'] == "admin") {
+                    echo '<select name="subject_teacher" id="subject_teacher">';
                     $sql = "SELECT subject_teacher.id, subject.name, teacher.name 
                     FROM subject_teacher
                     INNER JOIN subject ON subject.id = subject_teacher.subject_id
                     INNER JOIN teacher ON teacher.id = subject_teacher.teacher_id
                     INNER JOIN teacher_classroom ON subject_teacher.id = teacher_classroom.subject_teacher_id
                     WHERE teacher_classroom.classroom_id = '$classroom_id';";
-                    $query = mysqli_query($connection, $sql);
-                    while($row = mysqli_fetch_row($query)) {
-                        $id = $row[0];
-                        $subject = $row[1];
-                        $teacher = $row[2];
-                        echo '<option value="'.$id.'">'.$subject.' - '.$teacher.'</option>';
-                    }
-                ?>
+                } else {
+                    echo '<select name="subject_teacher" style="display: none;" id="subject_teacher">';
+                    $sql = "SELECT subject_teacher.id, subject.name, teacher.name 
+                    FROM subject_teacher
+                    INNER JOIN subject ON subject.id = subject_teacher.subject_id
+                    INNER JOIN teacher ON teacher.id = subject_teacher.teacher_id
+                    INNER JOIN teacher_classroom ON subject_teacher.id = teacher_classroom.subject_teacher_id
+                    WHERE teacher_classroom.classroom_id = '$classroom_id'
+                    AND teacher.email = '".$_SESSION['email']."';";                    
+                }
+                $query = mysqli_query($connection, $sql);
+                while($row = mysqli_fetch_row($query)) {
+                    $id = $row[0];
+                    $subject = $row[1];
+                    $teacher = $row[2];
+                    echo '<option value="'.$id.'">'.$subject.' - '.$teacher.'</option>';
+                }
+            ?>
 			</select>
             <input type="submit" value="Criar Nova Aula" />
         </form>
