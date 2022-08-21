@@ -40,8 +40,8 @@
             <a href="teacher/teacher.php">Professor</a>
             <a href="teacher_classroom/teacher_classroom.php">Professor por Sala</a>
             <a href="classroom/classroom.php">Sala</a>
-            <?php endif; ?>
             <a href="student/choose.php">Estudante</a>
+            <?php endif; ?>
             <a href="grades_attendance/choose.php">Notas</a>
             <a href="student_absence/choose_classroom.php">Faltas e Presenças</a>
             <?php if($_SESSION['type'] == "admin"): ?>
