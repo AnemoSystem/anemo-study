@@ -1,6 +1,7 @@
 <?php
     include '../connection.php';
 	$student_id = $_GET['id'];
+	session_start();
 ?>
 <html lang="pt">
     <head>
@@ -31,13 +32,25 @@
 						$teacher = "";
 						$can = False;
 						$i = 0;
-						$sql = "SELECT student_absence.subject_teacher_id, student_absence.state, 
-						teacher.name, subject.name, student_absence.day FROM student_absence
-						INNER JOIN subject_teacher ON student_absence.subject_teacher_id = subject_teacher.id
-						INNER JOIN teacher ON teacher.id = subject_teacher.teacher_id
-						INNER JOIN subject ON subject.id = subject_teacher.subject_id
-						WHERE student_absence.student_id = '$student_id' 
-						ORDER BY student_absence.subject_teacher_id, student_absence.id;";
+						if($_SESSION['type'] == "admin") {
+							$sql = "SELECT student_absence.subject_teacher_id, student_absence.state, 
+							teacher.name, subject.name, student_absence.day FROM student_absence
+							INNER JOIN subject_teacher ON student_absence.subject_teacher_id = subject_teacher.id
+							INNER JOIN teacher ON teacher.id = subject_teacher.teacher_id
+							INNER JOIN subject ON subject.id = subject_teacher.subject_id
+							WHERE student_absence.student_id = '$student_id' 
+							ORDER BY student_absence.subject_teacher_id, student_absence.id;";
+						} else {
+							$e = $_SESSION['email'];
+							$sql = "SELECT student_absence.subject_teacher_id, student_absence.state, 
+							teacher.name, subject.name, student_absence.day FROM student_absence
+							INNER JOIN subject_teacher ON student_absence.subject_teacher_id = subject_teacher.id
+							INNER JOIN teacher ON teacher.id = subject_teacher.teacher_id
+							INNER JOIN subject ON subject.id = subject_teacher.subject_id
+							WHERE student_absence.student_id = '$student_id' AND
+							teacher.email = '$e'
+							ORDER BY student_absence.subject_teacher_id, student_absence.id;";							
+						}
 						$query = mysqli_query($connection, $sql);
 						while($row = mysqli_fetch_row($query)) {
 							if($teacher != $row[2]) {
@@ -49,7 +62,10 @@
 									echo '</tr>';
 								}
 								echo '<tr class="tb_search">';
-								echo '<td class="tb_name">'.$row[2].' - '.$row[3].'</td>';
+								if($_SESSION['type'] == "admin")
+									echo '<td class="tb_name">'.$row[2].' - '.$row[3].'</td>';
+								else
+									echo '<td class="tb_name">'.$row[3].'</td>';
 								$teacher = $row[2];
 								$i = 0;
 							}
