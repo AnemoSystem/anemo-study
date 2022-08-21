@@ -24,7 +24,10 @@
 		$sql = "UPDATE teacher SET name = '$name', email = '$email', rg = '$rg',
 		cpf = '$cpf', phone = '$phone', salary = '$salary' WHERE id = $id";
         $query = mysqli_query($connection, $sql);
-		header("location: teacher.php");
+		if($_SESSION['type'] == "admin")	
+			header("location: teacher.php");
+		else
+			header("location: ../menu.php");
 	}
 ?>
 <html lang="pt">
