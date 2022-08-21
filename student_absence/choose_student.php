@@ -11,7 +11,7 @@
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
     </head>
     <body>
-        <a href="../index.php"><button>Voltar</button></a>
+        <a href="choose_classroom.php"><button>Voltar</button></a>
         <h1 style="margin: 40px;">Selecione um estudante</h1>
         <?php echo '<form method="POST" action="add_day.php?id='.$classroom_id.'">' ?>
             <input type="date" name="day" style="background-color: DodgerBlue; font-size: 25px; border-radius: 10px; padding: 10px; border: none;" />
