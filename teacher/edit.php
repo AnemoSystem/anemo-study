@@ -50,7 +50,7 @@
             <input type="number" name="salary" id="salary" placeholder="Digite o salário" value='<?php echo $salary; ?>'><br>
 			<input type="submit" name="submit" value="Editar">
 		</form>
-		<a href="teacher.php"><button>Voltar</button></a>
+		<button onclick="history.go(-1);">Voltar</button>
 	</body>
 	<script type="text/javascript">
 		$("#cpf").mask("999.999.999-99");
