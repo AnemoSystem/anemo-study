@@ -1,5 +1,6 @@
 <?php
 	include "../connection.php";
+	session_start();
 	$id = $_GET['id'];
 	$sql = "SELECT * FROM teacher WHERE id = '$id'";
 	$query = mysqli_query($connection, $sql);
@@ -38,16 +39,25 @@
 			<h3>ID: <?php echo $id; ?></h3>
 			<label for="name">Nome:</label>
             <input type="text" name="name" id="name" placeholder="Digite o nome" value='<?php echo $name; ?>'><br>
-			<label for="email">E-mail:</label>
-            <input type="email" name="email" id="email" placeholder="Digite o e-mail" value='<?php echo $email; ?>'><br>
 			<label for="cpf">CPF:</label>
             <input type="text" name="cpf" id="cpf" placeholder="Digite o CPF" value='<?php echo $cpf; ?>'><br>
 			<label for="rg">RG:</label>
             <input type="text" name="rg" id="rg" placeholder="Digite o RG" value='<?php echo $rg; ?>'><br>
 			<label for="phone">Telefone:</label>
             <input type="text" name="phone" id="phone" placeholder="Digite o Telefone" value='<?php echo $phone; ?>'><br>
-			<label for="salary">Salário:</label>
-            <input type="number" name="salary" id="salary" placeholder="Digite o salário" value='<?php echo $salary; ?>'><br>
+			<?php
+				if($_SESSION['type'] == "admin") {
+					echo '<label for="salary">Salário:</label>';
+					echo '<input type="number" name="salary" id="salary" placeholder="Digite o salário" value='.$salary.'><br>';
+					echo '<label for="email">E-mail:</label>';
+					echo '<input type="email" name="email" id="email" placeholder="Digite o e-mail" value='.$email.'><br>';
+				} else {
+					echo '<label for="salary" style="display: none;" >Salário:</label>';
+					echo '<input type="number" style="display: none;" name="salary" id="salary" placeholder="Digite o salário" value='.$salary.'><br>';
+					echo '<label for="email" style="display: none;">E-mail:</label>';
+					echo '<input type="email" style="display: none;" name="email" id="email" placeholder="Digite o e-mail" value='.$email.'><br>';
+				}
+			?>
 			<input type="submit" name="submit" value="Editar">
 		</form>
 		<button onclick="history.go(-1);">Voltar</button>
