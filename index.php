@@ -3,12 +3,16 @@
 
     include "connection.php";
 
-    if(is_null($_SESSION["type"]))
+    if(is_null($_SESSION["type"])) {
         $_SESSION["type"] = "none";
+        $_SESSION["email"] = "none";
+    }
     else if($_SESSION["type"] != "none")
         header("location: menu.php");
-    else
+    else {
         $_SESSION["type"] = "none";
+        $_SESSION["email"] = "none";
+    }
 
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         $email = $_POST['email'];
@@ -25,14 +29,18 @@
                 WHERE email = '$email' AND password = '$password';";
                 $query = mysqli_query($connection, $sql);
                 $row = mysqli_fetch_assoc($query);
-                if(mysqli_num_rows($query) > 0)
+                if(mysqli_num_rows($query) > 0) {
                     $_SESSION["type"] = $row['name'];
+                    $_SESSION["email"] = $row['email'];
+                }
                 else 
                     $error = "Usuário não encontrado ou senha incorreta.";
             }
             else if($type == "Administrador") {
-                if($email == "root@root" && $password == "root")
+                if($email == "root@root" && $password == "root") {
                     $_SESSION["type"] = "admin";
+                    $_SESSION["email"] = "root@root";
+                }
                 else 
                     $error = "Usuário não encontrado.";
             }
