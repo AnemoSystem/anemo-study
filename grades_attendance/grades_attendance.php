@@ -23,19 +23,36 @@
 						$query = mysqli_query($connection, $sql);
 						$row = mysqli_fetch_row($query);
 						if($row[0] != 0) {
-							$sql = "SELECT grades_attendance.id, teacher.id, grades_attendance.student_id, 
-							grades_attendance.grade_value, teacher.name, subject.name, student.name,
-							grade.name, period.name, grades_attendance.school_month FROM grades_attendance
-							INNER JOIN subject_teacher ON grades_attendance.subject_teacher_id = subject_teacher.id
-							INNER JOIN teacher ON teacher.id = subject_teacher.teacher_id
-							INNER JOIN subject ON subject.id = subject_teacher.subject_id
-							INNER JOIN student ON student.id = grades_attendance.student_id
-							INNER JOIN classroom ON student.classroom_id = classroom.id
-							INNER JOIN grade ON grade.id = classroom.grade_id
-							INNER JOIN period ON period.id = classroom.period_id
-							WHERE student.classroom_id = '$classroom_id'
-							ORDER BY student.id, grades_attendance.subject_teacher_id, 
-							grades_attendance.school_month;";
+							if($_SESSION['type'] == "admin") {
+								$sql = "SELECT grades_attendance.id, teacher.id, grades_attendance.student_id, 
+								grades_attendance.grade_value, teacher.name, subject.name, student.name,
+								grade.name, period.name, grades_attendance.school_month FROM grades_attendance
+								INNER JOIN subject_teacher ON grades_attendance.subject_teacher_id = subject_teacher.id
+								INNER JOIN teacher ON teacher.id = subject_teacher.teacher_id
+								INNER JOIN subject ON subject.id = subject_teacher.subject_id
+								INNER JOIN student ON student.id = grades_attendance.student_id
+								INNER JOIN classroom ON student.classroom_id = classroom.id
+								INNER JOIN grade ON grade.id = classroom.grade_id
+								INNER JOIN period ON period.id = classroom.period_id
+								WHERE student.classroom_id = '$classroom_id'
+								ORDER BY student.id, grades_attendance.subject_teacher_id, 
+								grades_attendance.school_month;";
+							} else {
+								$sql = "SELECT grades_attendance.id, teacher.id, grades_attendance.student_id, 
+								grades_attendance.grade_value, teacher.name, subject.name, student.name,
+								grade.name, period.name, grades_attendance.school_month FROM grades_attendance
+								INNER JOIN subject_teacher ON grades_attendance.subject_teacher_id = subject_teacher.id
+								INNER JOIN teacher ON teacher.id = subject_teacher.teacher_id
+								INNER JOIN subject ON subject.id = subject_teacher.subject_id
+								INNER JOIN student ON student.id = grades_attendance.student_id
+								INNER JOIN classroom ON student.classroom_id = classroom.id
+								INNER JOIN grade ON grade.id = classroom.grade_id
+								INNER JOIN period ON period.id = classroom.period_id
+								WHERE student.classroom_id = '$classroom_id' AND
+								teacher.email = 'joaoprof@gmail.com'
+								ORDER BY student.id, grades_attendance.subject_teacher_id, 
+								grades_attendance.school_month;";								
+							}
 							$query = mysqli_query($connection, $sql);
 							while($column = mysqli_fetch_row($query)) {
 								$id = $column[0];
@@ -58,7 +75,10 @@
 
 								if($check_t != strval($teacher_id)) {
 									$check_t = strval($teacher_id);
-									echo '<ul><li>'.$subject_name.' - '.$teacher_name.'</li><br><ul>';
+									if($_SESSION['type'] == "admin")
+										echo '<ul><li>'.$subject_name.' - '.$teacher_name.'</li><br><ul>';
+									else
+										echo '<ul><li>'.$subject_name.'</li><br><ul>';
 								}
 								
 								if($grade_value == "-1")
@@ -69,7 +89,7 @@
 								}
 								//echo '<td><button name="delete" value="'.$id.'">Deletar</button>';
 								//echo '<input type="button" value="Editar"></a>';
-								if($month == '4') echo '<br>';
+								if($month == '4' && $_SESSION['type'] == "admin") echo '<br>';
 								$can_close = True;
 							}
 						}
