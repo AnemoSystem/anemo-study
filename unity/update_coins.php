@@ -18,4 +18,5 @@
     $query = mysqli_query($connection, $sql);
     $result = mysqli_fetch_row($query);
     echo $result[0];
+    $connection->close();
 ?>
