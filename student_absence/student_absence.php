@@ -2,6 +2,12 @@
     include '../connection.php';
 	$student_id = $_GET['id'];
 	session_start();
+
+	function formatDate($which_date) {
+		$separate_date = explode("-", $which_date);
+		$new_date = $separate_date[2]."/".$separate_date[1]."/".$separate_date[0];
+		return $new_date;
+	}
 ?>
 <html lang="pt">
     <head>
@@ -23,7 +29,7 @@
 							while($row = mysqli_fetch_row($query)) {
 								$d = '<th>'.$row[0].'</th>';
 								array_push($lines, $d);
-								echo $d;
+								echo '<th>'.formatDate($row[0]).'</th>';
 							}
 						?>
 					</tr>
