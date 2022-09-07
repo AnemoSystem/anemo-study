@@ -4,12 +4,28 @@
         $name = $_POST['name'];
 		$password = $_POST['password'];
 		$student = $_POST['student'];
+
+		// Generate Vkey
+		$vkey = md5(time().$name);
+
         $sql = "INSERT INTO user 
 		(user_nickname, user_password, student_id, is_logged, id_skin, id_torso, id_legs,
-		id_hair, coins, points) 
-		VALUES ('$name', '$password', '$student', '0', '0', '0', '0', '0', '0', '0')";
+		id_hair, coins, points, vkey) 
+		VALUES ('$name', '$password', '$student', '0', '0', '0', '0', '0', '0', '0', '$vkey')";
         $query = mysqli_query($connection, $sql);
 
+		// Send Email
+		/*
+		$sql = "SELECT student.email FROM student
+		INNER JOIN user ON user.student_id = student.id
+		WHERE user.user_nickname = '$name';";
+        $query = mysqli_query($connection, $sql);
+
+		$row = mysqli_fetch_row($query);
+		if($row != NULL) {
+			$subject = "Verificação de Email";
+		}
+		*/
     }
     else if(isset($_POST['delete'])) {
         $id_selected = $_POST['delete'];
