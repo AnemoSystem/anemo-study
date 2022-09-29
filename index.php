@@ -3,7 +3,7 @@
 
     include "connection.php";
 
-    if(is_null($_SESSION["type"])) {
+    if(!isset($_SESSION["type"])) {
         $_SESSION["type"] = "none";
         $_SESSION["email"] = "none";
     }
