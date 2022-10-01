@@ -45,8 +45,8 @@
 		<a href="../index.php"><button>Voltar</button></a>
         <form method="POST">
             <div class="form" id="insert-form">
-				<label for="username">Nome de Usuário:</label>
-                <input type="text" name="username" id="username" placeholder="Digite o nome"><br>
+				<label for="name">Nome de Usuário:</label>
+                <input type="text" name="name" id="name" placeholder="Digite o nome"><br>
 				<label for="password">Senha:</label>
                 <input type="password" name="password" id="password" placeholder="Digite a senha"><br>
 				<label for="student">Estudante:</label>
