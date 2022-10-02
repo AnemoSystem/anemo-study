@@ -7,11 +7,12 @@
 
 		// Generate Vkey
 		$vkey = md5(time().$name);
-
+		$sql = "SET FOREIGN_KEY_CHECKS=0;";
+		mysqli_query($connection, $sql);
         $sql = "INSERT INTO user 
 		(user_nickname, user_password, student_id, is_logged, id_skin, id_torso, id_legs,
 		id_hair, coins, points, vkey) 
-		VALUES ('$name', '$password', '$student', '0', '0', '0', '0', '0', '0', '0', '$vkey')";
+		VALUES ('$name', '$password', '$student', 0, '0', '0', '0', '0', '0', '0', '$vkey')";
         $query = mysqli_query($connection, $sql);
 
 		// Send Email
@@ -26,11 +27,39 @@
 			$subject = "Verificação de Email";
 		}
 		*/
+		$sql = "SELECT * FROM user WHERE user_nickname = '$name'";
+		$query = mysqli_query($connection, $sql);
+		$row = mysqli_fetch_assoc($query);
+		$id = $row["id"];
+
+		for($i = 0; $i <= 1; $i++) {
+			$sql = "INSERT INTO clothes (user_id, item_id, type) 
+			VALUES ('$id', '$i', 'S')";
+			mysqli_query($connection, $sql);
+			$sql = "INSERT INTO clothes (user_id, item_id, type) 
+			VALUES ('$id', '$i', 'T')";
+			mysqli_query($connection, $sql);
+			$sql = "INSERT INTO clothes (user_id, item_id, type) 
+			VALUES ('$id', '$i', 'H')";
+			mysqli_query($connection, $sql);
+			$sql = "INSERT INTO clothes (user_id, item_id, type) 
+			VALUES ('$id', '$i', 'L')";
+			mysqli_query($connection, $sql);
+		}
+
+		$sql = "SET FOREIGN_KEY_CHECKS=1;";
+		mysqli_query($connection, $sql);
     }
     else if(isset($_POST['delete'])) {
         $id_selected = $_POST['delete'];
-        $sql = "DELETE FROM user WHERE id = $id_selected";
-        mysqli_query($connection, $sql);	
+		$sql = "DELETE FROM clothes WHERE user_id = $id_selected;";
+		mysqli_query($connection, $sql);
+		$sql = "SET FOREIGN_KEY_CHECKS=0;";
+		mysqli_query($connection, $sql);
+        $sql = "DELETE FROM user WHERE id = $id_selected;";
+        mysqli_query($connection, $sql);
+		$sql = "SET FOREIGN_KEY_CHECKS=1;";
+		mysqli_query($connection, $sql);
         header("Refresh:0");
     }
 ?>
