@@ -10,14 +10,15 @@
 
         $sql = "SELECT notifications.id,
         notifications.title, notifications.type, 
-        notifications.send_date, user.user_nickname
+        notifications.send_date, user.user_nickname,
+        notifications.status
         FROM notifications
         INNER JOIN user ON user.id = notifications.from_user
         WHERE notifications.to_user = '$id';";
         $query = mysqli_query($connection, $sql);
 
         while($row = mysqli_fetch_assoc($query)) {
-            echo $row['id']."@".$row['title']."@".$row['type']."@".$row['user_nickname']."@".$row['send_date'];
+            echo $row['id']."@".$row['title']."@".$row['type']."@".$row['user_nickname']."@".$row['send_date']."@".$row['status'];
             echo "%";
         }
     }
