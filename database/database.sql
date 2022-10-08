@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 08, 2022 at 06:32 PM
--- Server version: 10.4.22-MariaDB
--- PHP Version: 8.1.2
+-- Generation Time: Oct 08, 2022 at 09:15 PM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 7.4.29
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -58,20 +58,18 @@ CREATE TABLE `clothes` (
 --
 
 INSERT INTO `clothes` (`user_id`, `item_id`, `type`) VALUES
-(5, 0, 'S'),
-(5, 1, 'S'),
-(5, 0, 'T'),
-(5, 1, 'T'),
-(5, 0, 'H'),
-(5, 1, 'H'),
-(5, 0, 'L'),
-(5, 1, 'L'),
-(5, 2, 'T'),
-(5, 2, 'H'),
-(5, 3, 'T'),
-(5, 3, 'H'),
-(0, 0, '0'),
-(1, 1, '1'),
+(8, 0, 'S'),
+(8, 1, 'S'),
+(8, 0, 'T'),
+(8, 1, 'T'),
+(8, 0, 'H'),
+(8, 1, 'H'),
+(8, 0, 'L'),
+(8, 1, 'L'),
+(8, 2, 'T'),
+(8, 2, 'H'),
+(8, 3, 'T'),
+(8, 3, 'H'),
 (15, 0, 'S'),
 (15, 0, 'T'),
 (15, 0, 'H'),
@@ -731,61 +729,13 @@ ALTER TABLE `classroom`
 -- Constraints for table `clothes`
 --
 ALTER TABLE `clothes`
-  ADD CONSTRAINT `clothes_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`student_id`);
+  ADD CONSTRAINT `clothes_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `employee`
 --
 ALTER TABLE `employee`
   ADD CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`function_id`) REFERENCES `function` (`id`);
-
---
--- Constraints for table `friends`
---
-ALTER TABLE `friends`
-  ADD CONSTRAINT `friends_ibfk_1` FOREIGN KEY (`user_1`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `friends_ibfk_2` FOREIGN KEY (`user_2`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `friends_ibfk_3` FOREIGN KEY (`notification_id`) REFERENCES `notifications` (`id`);
-
---
--- Constraints for table `notifications`
---
-ALTER TABLE `notifications`
-  ADD CONSTRAINT `notifications_ibfk_1` FOREIGN KEY (`from_user`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `notifications_ibfk_2` FOREIGN KEY (`to_user`) REFERENCES `user` (`id`);
-
---
--- Constraints for table `student`
---
-ALTER TABLE `student`
-  ADD CONSTRAINT `student_ibfk_1` FOREIGN KEY (`classroom_id`) REFERENCES `classroom` (`id`);
-
---
--- Constraints for table `student_absence`
---
-ALTER TABLE `student_absence`
-  ADD CONSTRAINT `student_absence_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`),
-  ADD CONSTRAINT `student_absence_ibfk_2` FOREIGN KEY (`subject_teacher_id`) REFERENCES `subject_teacher` (`id`);
-
---
--- Constraints for table `subject_teacher`
---
-ALTER TABLE `subject_teacher`
-  ADD CONSTRAINT `subject_teacher_ibfk_1` FOREIGN KEY (`teacher_id`) REFERENCES `teacher` (`id`),
-  ADD CONSTRAINT `subject_teacher_ibfk_2` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`id`);
-
---
--- Constraints for table `teacher_classroom`
---
-ALTER TABLE `teacher_classroom`
-  ADD CONSTRAINT `teacher_classroom_ibfk_1` FOREIGN KEY (`subject_teacher_id`) REFERENCES `subject_teacher` (`id`),
-  ADD CONSTRAINT `teacher_classroom_ibfk_2` FOREIGN KEY (`classroom_id`) REFERENCES `classroom` (`id`);
-
---
--- Constraints for table `user`
---
-ALTER TABLE `user`
-  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`student_id`) REFERENCES `student` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
