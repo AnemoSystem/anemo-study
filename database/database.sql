@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 21, 2022 at 04:54 AM
+-- Generation Time: Oct 08, 2022 at 06:32 PM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 8.1.2
 
@@ -67,8 +67,43 @@ INSERT INTO `clothes` (`user_id`, `item_id`, `type`) VALUES
 (5, 0, 'L'),
 (5, 1, 'L'),
 (5, 2, 'T'),
+(5, 2, 'H'),
 (5, 3, 'T'),
-(5, 3, 'H');
+(5, 3, 'H'),
+(0, 0, '0'),
+(1, 1, '1'),
+(15, 0, 'S'),
+(15, 0, 'T'),
+(15, 0, 'H'),
+(15, 0, 'L'),
+(15, 1, 'S'),
+(15, 1, 'T'),
+(15, 1, 'H'),
+(15, 1, 'L'),
+(16, 0, 'S'),
+(16, 0, 'T'),
+(16, 0, 'H'),
+(16, 0, 'L'),
+(16, 1, 'S'),
+(16, 1, 'T'),
+(16, 1, 'H'),
+(16, 1, 'L'),
+(17, 0, 'S'),
+(17, 0, 'T'),
+(17, 0, 'H'),
+(17, 0, 'L'),
+(17, 1, 'S'),
+(17, 1, 'T'),
+(17, 1, 'H'),
+(17, 1, 'L'),
+(18, 0, 'S'),
+(18, 0, 'T'),
+(18, 0, 'H'),
+(18, 0, 'L'),
+(18, 1, 'S'),
+(18, 1, 'T'),
+(18, 1, 'H'),
+(18, 1, 'L');
 
 -- --------------------------------------------------------
 
@@ -86,6 +121,19 @@ CREATE TABLE `employee` (
   `function_id` int(11) NOT NULL,
   `phone` varchar(16) NOT NULL,
   `salary` decimal(8,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `friends`
+--
+
+CREATE TABLE `friends` (
+  `id` int(11) NOT NULL,
+  `user_1` int(11) NOT NULL,
+  `user_2` int(11) NOT NULL,
+  `notification_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -180,6 +228,50 @@ INSERT INTO `grades_attendance` (`subject_teacher_id`, `student_id`, `grade_valu
 (6, 10, '-1.0', 78, 2),
 (6, 10, '-1.0', 79, 3),
 (6, 10, '-1.0', 80, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `id` int(11) NOT NULL,
+  `title` varchar(20) NOT NULL,
+  `message` text NOT NULL,
+  `type` char(1) NOT NULL,
+  `status` char(1) NOT NULL,
+  `from_user` int(11) NOT NULL,
+  `to_user` int(11) NOT NULL,
+  `send_date` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `notifications`
+--
+
+INSERT INTO `notifications` (`id`, `title`, `message`, `type`, `status`, `from_user`, `to_user`, `send_date`) VALUES
+(1, 'testefdsfsdf', 'teste', 'P', 'R', 1, 8, '2022-10-06'),
+(2, 'nbmbnmbnmb', 'bnmnmbnmbnmbmbnm', 'M', 'N', 1, 8, '2022-10-31');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `number_players`
+--
+
+CREATE TABLE `number_players` (
+  `id` int(11) NOT NULL,
+  `A` int(11) NOT NULL,
+  `B` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `number_players`
+--
+
+INSERT INTO `number_players` (`id`, `A`, `B`) VALUES
+(1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -380,22 +472,27 @@ CREATE TABLE `user` (
   `id_hair` int(11) NOT NULL,
   `coins` int(11) NOT NULL,
   `points` int(11) NOT NULL,
-  `id` int(11) NOT NULL
+  `id` int(11) NOT NULL,
+  `vkey` varchar(60) DEFAULT NULL,
+  `number_visits` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_nickname`, `user_password`, `student_id`, `is_logged`, `id_skin`, `id_torso`, `id_legs`, `id_hair`, `coins`, `points`, `id`) VALUES
-('guisamuel', 'desenhando', 2, b'0', 0, 0, 0, 0, 100, 0, 1),
-('joao123', 'teste', 2, b'0', 0, 0, 0, 0, 100, 0, 2),
-('capivara12', 'pote1', 2, b'0', 0, 0, 0, 0, 100, 0, 3),
-('ZegarekD', 'zeg', 2, b'0', 0, 0, 0, 0, 100, 0, 4),
-('primo', 'primo', 2, b'0', 0, 0, 0, 0, 100, 0, 5),
-('a', 'a', 2, b'0', 0, 0, 0, 0, 100, 0, 6),
-('e', 'e', 2, b'0', 1, 0, 0, 0, 100, 0, 7),
-('jooj', 'jooj', 5, b'0', 0, 1, 1, 0, 104, 0, 8);
+INSERT INTO `user` (`user_nickname`, `user_password`, `student_id`, `is_logged`, `id_skin`, `id_torso`, `id_legs`, `id_hair`, `coins`, `points`, `id`, `vkey`, `number_visits`) VALUES
+('guisamuel', 'desenhando', 2, b'0', 0, 0, 0, 0, 100, 0, 1, NULL, 0),
+('capivara12', 'pote1', 2, b'0', 0, 0, 0, 0, 100, 0, 3, NULL, 0),
+('ZegarekD', 'zeg', 2, b'0', 0, 0, 0, 0, 100, 0, 4, NULL, 0),
+('primo', 'primo', 2, b'0', 1, 0, 0, 0, 100, 0, 5, NULL, 2),
+('a', 'a', 2, b'0', 0, 0, 0, 0, 100, 0, 6, NULL, 0),
+('e', 'e', 2, b'0', 1, 0, 0, 0, 100, 0, 7, NULL, 0),
+('jooj', 'jooj', 5, b'0', 1, 2, 0, 0, 18, 0, 8, NULL, 27),
+('aaaa', 'aaaa', 5, b'0', 1, 1, 0, 0, 0, 0, 15, 'd09cd26e65d9be35845cc09e976af4cb', 4),
+('bbbb', 'bbbb', 5, b'1', 0, 0, 0, 0, 0, 0, 16, '9180e3a4e8d1416f0ab4c2c6c5acce0a', 0),
+('cccc', 'cccc', 1, b'1', 0, 0, 0, 0, 0, 0, 17, 'e6542f2e18e19025fd4a9e4f2d2c3a73', 0),
+('dddd', 'dddd', 1, b'0', 0, 0, 0, 0, 0, 0, 18, 'ff3c7dc41e8319f312bb798b84b299d5', 0);
 
 --
 -- Indexes for dumped tables
@@ -423,6 +520,15 @@ ALTER TABLE `employee`
   ADD KEY `funcao_id` (`function_id`);
 
 --
+-- Indexes for table `friends`
+--
+ALTER TABLE `friends`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_1` (`user_1`),
+  ADD KEY `user_2` (`user_2`),
+  ADD KEY `notification_id` (`notification_id`);
+
+--
 -- Indexes for table `function`
 --
 ALTER TABLE `function`
@@ -438,6 +544,20 @@ ALTER TABLE `grade`
 -- Indexes for table `grades_attendance`
 --
 ALTER TABLE `grades_attendance`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `from_user` (`from_user`),
+  ADD KEY `to_user` (`to_user`);
+
+--
+-- Indexes for table `number_players`
+--
+ALTER TABLE `number_players`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -513,6 +633,12 @@ ALTER TABLE `employee`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
+-- AUTO_INCREMENT for table `friends`
+--
+ALTER TABLE `friends`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `function`
 --
 ALTER TABLE `function`
@@ -529,6 +655,18 @@ ALTER TABLE `grade`
 --
 ALTER TABLE `grades_attendance`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=81;
+
+--
+-- AUTO_INCREMENT for table `notifications`
+--
+ALTER TABLE `notifications`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `number_players`
+--
+ALTER TABLE `number_players`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `period`
@@ -576,7 +714,7 @@ ALTER TABLE `teacher_classroom`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Constraints for dumped tables
@@ -600,6 +738,21 @@ ALTER TABLE `clothes`
 --
 ALTER TABLE `employee`
   ADD CONSTRAINT `employee_ibfk_1` FOREIGN KEY (`function_id`) REFERENCES `function` (`id`);
+
+--
+-- Constraints for table `friends`
+--
+ALTER TABLE `friends`
+  ADD CONSTRAINT `friends_ibfk_1` FOREIGN KEY (`user_1`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `friends_ibfk_2` FOREIGN KEY (`user_2`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `friends_ibfk_3` FOREIGN KEY (`notification_id`) REFERENCES `notifications` (`id`);
+
+--
+-- Constraints for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD CONSTRAINT `notifications_ibfk_1` FOREIGN KEY (`from_user`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `notifications_ibfk_2` FOREIGN KEY (`to_user`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `student`
