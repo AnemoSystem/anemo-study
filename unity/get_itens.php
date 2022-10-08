@@ -6,7 +6,7 @@
 		$item_id = $_POST['item_id'];
 		$type = $_POST['type'];
 		$sql = "SELECT user.user_nickname, clothes.item_id, clothes.type FROM clothes
-		INNER JOIN user ON user.student_id = clothes.user_id
+		INNER JOIN user ON user.id = clothes.user_id
 		WHERE clothes.type = '$type' AND user.user_nickname = '$username' AND clothes.item_id = '$item_id';";
 		$query = mysqli_query($connection, $sql);
 
@@ -24,7 +24,7 @@
 		$type = $_POST['type'];
 		$coins = $_POST['coins'];
 		if($getset == 1) {
-			$sql = "SELECT student_id FROM user WHERE user_nickname = '$username';";
+			$sql = "SELECT id FROM user WHERE user_nickname = '$username';";
 			$query = mysqli_query($connection, $sql);
 			$user_id = mysqli_fetch_row($query);
 

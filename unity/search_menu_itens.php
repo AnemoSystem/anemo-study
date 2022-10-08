@@ -5,7 +5,7 @@
 		$username = $_POST['username'];
 		$type = $_POST['type'];
 		$sql = "SELECT clothes.item_id FROM clothes 
-		INNER JOIN user ON user.student_id = clothes.user_id 
+		INNER JOIN user ON user.id = clothes.user_id 
 		WHERE clothes.type = '$type' AND user.user_nickname = '$username';";
 		$query = mysqli_query($connection, $sql);
 		
