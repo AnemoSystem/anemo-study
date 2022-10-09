@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 08, 2022 at 09:15 PM
+-- Generation Time: Oct 09, 2022 at 04:30 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 7.4.29
 
@@ -250,7 +250,22 @@ CREATE TABLE `notifications` (
 
 INSERT INTO `notifications` (`id`, `title`, `message`, `type`, `status`, `from_user`, `to_user`, `send_date`) VALUES
 (1, 'testefdsfsdf', 'teste', 'P', 'R', 1, 8, '2022-10-06'),
-(2, 'nbmbnmbnmb', 'bnmnmbnmbnmbmbnm', 'M', 'N', 1, 8, '2022-10-31');
+(2, 'nbmbnmbnmb', 'bnmnmbnmbnmbmbnm', 'M', 'N', 1, 8, '2022-10-31'),
+(3, 'fdhdfhhg', 'teste', 'M', 'N', 1, 8, '2022-10-31'),
+(4, 'hgjhgjghjghj', 'ghjghkxdshthgdj', 'M', 'N', 1, 8, '2022-10-31'),
+(5, ',333', 'bnmnmbnmbnmbmbnm', 'M', 'N', 1, 8, '2022-10-31'),
+(6, 'nbmbnmbnmb', 'bnmnmbnmbnmbmbnm', 'M', 'N', 1, 8, '2022-10-31'),
+(7, 'gfdgfd', 'bnmnmbnmbnmbmbnm', 'M', 'N', 1, 8, '2022-10-31'),
+(8, 'samuel', 'bnmnmbnmbnmbmbnm', 'M', 'N', 1, 8, '2022-10-31'),
+(9, '4164564', 'bnmnmbnmbnmbmbnm', 'M', 'N', 1, 8, '2022-10-31'),
+(10, 'poxa vida', 'bnmnmbnmbnmbmbnm', 'M', 'N', 1, 8, '2022-10-31'),
+(11, 'sdad', 'bnmnmbnmbnmbmbnm', 'M', 'N', 1, 8, '2022-10-31'),
+(12, 'cara legal', 'bnmnmbnmbnmbmbnm', 'M', 'N', 1, 8, '2022-10-31'),
+(13, 'curioso', 'bnmnmbnmbnmbmbnm', 'M', 'N', 1, 8, '2022-10-31'),
+(14, 'como vc', 'bnmnmbnmbnmbmbnm', 'M', 'N', 1, 8, '2022-10-31'),
+(15, 'kk', 'bnmnmbnmbnmbmbnm', 'M', 'N', 1, 8, '2022-10-31'),
+(16, 'men', 'bnmnmbnmbnmbmbnm', 'M', 'N', 1, 8, '2022-10-31'),
+(17, 'eae', 'hfghgfh', 'M', 'N', 1, 8, '2022-10-31');
 
 -- --------------------------------------------------------
 
@@ -486,10 +501,10 @@ INSERT INTO `user` (`user_nickname`, `user_password`, `student_id`, `is_logged`,
 ('primo', 'primo', 2, b'0', 1, 0, 0, 0, 100, 0, 5, NULL, 2),
 ('a', 'a', 2, b'0', 0, 0, 0, 0, 100, 0, 6, NULL, 0),
 ('e', 'e', 2, b'0', 1, 0, 0, 0, 100, 0, 7, NULL, 0),
-('jooj', 'jooj', 5, b'0', 1, 2, 0, 0, 18, 0, 8, NULL, 27),
+('jooj', 'jooj', 5, b'1', 1, 2, 0, 0, 18, 0, 8, NULL, 30),
 ('aaaa', 'aaaa', 5, b'0', 1, 1, 0, 0, 0, 0, 15, 'd09cd26e65d9be35845cc09e976af4cb', 4),
 ('bbbb', 'bbbb', 5, b'1', 0, 0, 0, 0, 0, 0, 16, '9180e3a4e8d1416f0ab4c2c6c5acce0a', 0),
-('cccc', 'cccc', 1, b'1', 0, 0, 0, 0, 0, 0, 17, 'e6542f2e18e19025fd4a9e4f2d2c3a73', 0),
+('cccc', 'cccc', 1, b'0', 0, 0, 0, 0, 0, 0, 17, 'e6542f2e18e19025fd4a9e4f2d2c3a73', 0),
 ('dddd', 'dddd', 1, b'0', 0, 0, 0, 0, 0, 0, 18, 'ff3c7dc41e8319f312bb798b84b299d5', 0);
 
 --
@@ -658,7 +673,7 @@ ALTER TABLE `grades_attendance`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `number_players`
