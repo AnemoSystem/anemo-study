@@ -25,7 +25,7 @@
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
     </head>
     <body>
-        <a href="../index.php"><button>Voltar</button></a>
+        <a href="list_notifications.php"><button>Voltar</button></a>
         <h1 style="margin: 40px;"><?php echo $message['title']; ?></h1>
         <p style="margin: 40px;"><?php echo $message['message']; ?></p>
         <h2 style="margin: 20px;">Emissor: <?php echo $message['student']." (".$message['grade']." - ".$message['period'].")"; ?></h2>

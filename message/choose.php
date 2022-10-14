@@ -12,7 +12,6 @@
     <body>
         <a href="../index.php"><button>Voltar</button></a>
         <h1 style="margin: 40px;">Selecione uma opção</h1>
-        <input type="text" style="margin: 30px;" placeholder="Pesquisar por nome" id="searchbar" onkeyup="filter();">
         <a href="choose_classroom.php" style="margin: 40px;"><button>Enviar uma mensagem para aluno</button></a>
         <a href="list_notifications.php" style="margin: 40px;"><button>Ver mensagens recebidas</button></a>
     </body>

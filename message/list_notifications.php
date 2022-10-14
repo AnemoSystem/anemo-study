@@ -11,8 +11,9 @@
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
     </head>
     <body>
-        <a href="../index.php"><button>Voltar</button></a>
+        <a href="choose.php"><button>Voltar</button></a>
         <h1 style="margin: 40px;">Selecione uma mensagem</h1>
+        <!--<input type="text" style="margin: 30px;" placeholder="Pesquisar por nome" id="searchbar" onkeyup="filter();">-->
         <?php
             $sql = "SELECT notifications.id,notifications.title, 
             notifications.send_date, student.name
@@ -28,7 +29,7 @@
                 echo '<h3>De: Escola</h3>';
                 echo '<h3 class="tb_name">Para: '.$result['name'].'</h3>';
                 echo '<h3>Data: '.formatDate($result['send_date']).'</h3>';
-                echo "<a class='tb_search' href='display_message.php?id=".$result['id']."'>";
+                echo "<a href='display_message.php?id=".$result['id']."'>";
                 echo '<button>Abrir Mensagem</button>';
                 echo "</a>";
                 echo '</div>';
