@@ -46,6 +46,7 @@
             <?php endif; ?>
             <a href="grades_attendance/choose.php">Notas</a>
             <a href="student_absence/choose_classroom.php">Faltas e Presenças</a>
+            <a href="message/choose_classroom.php">Mensagens</a>
             <?php
                 if($_SESSION['type'] != "admin") {
                     $sql = "SELECT id FROM teacher WHERE email = '".$_SESSION['email']."';";

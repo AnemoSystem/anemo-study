@@ -64,7 +64,7 @@ button, input[type=submit], input[type=button] {
     cursor: pointer;
 }
 
-input[type=text], input[type=number], input[type=email], input[type=password] {
+input[type=text], input[type=number], input[type=email], input[type=password], textarea {
     border: none;
     background-color: #AEAEAE;
     transition: 0.5s;
