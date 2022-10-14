@@ -30,7 +30,7 @@
 		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
     </head>
     <body>
-        <a href="../index.php"><button>Voltar</button></a>
+        <a href="../index.php"><button>Voltar ao menu</button></a>
         <h1 style="margin: 40px;">Enviar Mensagem</h1>
         <form method="POST">
             <label for="title">Título da mensagem: </label>
