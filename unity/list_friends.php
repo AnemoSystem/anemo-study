@@ -11,7 +11,7 @@
         $id = $id_user[0];
 
         if($order == '1') {
-            $sql = "SELECT user.id, user.user_nickname, user.is_logged FROM user
+            $sql = "SELECT friends.id, user.user_nickname, user.is_logged FROM user
             INNER JOIN friends ON user.id = friends.user_1
             WHERE friends.user_2 = '$id'
             ORDER BY user.id;";
@@ -22,7 +22,7 @@
                 }
             } else echo "error";
         } else {
-            $sql = "SELECT user.id, user.user_nickname, user.is_logged FROM user
+            $sql = "SELECT friends.id, user.user_nickname, user.is_logged FROM user
             INNER JOIN friends ON user.id = friends.user_2
             WHERE friends.user_1 = '$id'
             ORDER BY user.id;";
