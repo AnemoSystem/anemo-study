@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 09, 2022 at 04:30 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 7.4.29
+-- Generation Time: Oct 31, 2022 at 12:53 PM
+-- Server version: 10.4.22-MariaDB
+-- PHP Version: 8.1.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -130,8 +130,7 @@ CREATE TABLE `employee` (
 CREATE TABLE `friends` (
   `id` int(11) NOT NULL,
   `user_1` int(11) NOT NULL,
-  `user_2` int(11) NOT NULL,
-  `notification_id` int(11) NOT NULL
+  `user_2` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -235,7 +234,7 @@ INSERT INTO `grades_attendance` (`subject_teacher_id`, `student_id`, `grade_valu
 
 CREATE TABLE `notifications` (
   `id` int(11) NOT NULL,
-  `title` varchar(20) NOT NULL,
+  `title` varchar(60) NOT NULL,
   `message` text NOT NULL,
   `type` char(1) NOT NULL,
   `status` char(1) NOT NULL,
@@ -249,23 +248,15 @@ CREATE TABLE `notifications` (
 --
 
 INSERT INTO `notifications` (`id`, `title`, `message`, `type`, `status`, `from_user`, `to_user`, `send_date`) VALUES
-(1, 'testefdsfsdf', 'teste', 'P', 'R', 1, 8, '2022-10-06'),
-(2, 'nbmbnmbnmb', 'bnmnmbnmbnmbmbnm', 'M', 'N', 1, 8, '2022-10-31'),
-(3, 'fdhdfhhg', 'teste', 'M', 'N', 1, 8, '2022-10-31'),
-(4, 'hgjhgjghjghj', 'ghjghkxdshthgdj', 'M', 'N', 1, 8, '2022-10-31'),
-(5, ',333', 'bnmnmbnmbnmbmbnm', 'M', 'N', 1, 8, '2022-10-31'),
-(6, 'nbmbnmbnmb', 'bnmnmbnmbnmbmbnm', 'M', 'N', 1, 8, '2022-10-31'),
-(7, 'gfdgfd', 'bnmnmbnmbnmbmbnm', 'M', 'N', 1, 8, '2022-10-31'),
-(8, 'samuel', 'bnmnmbnmbnmbmbnm', 'M', 'N', 1, 8, '2022-10-31'),
-(9, '4164564', 'bnmnmbnmbnmbmbnm', 'M', 'N', 1, 8, '2022-10-31'),
-(10, 'poxa vida', 'bnmnmbnmbnmbmbnm', 'M', 'N', 1, 8, '2022-10-31'),
-(11, 'sdad', 'bnmnmbnmbnmbmbnm', 'M', 'N', 1, 8, '2022-10-31'),
-(12, 'cara legal', 'bnmnmbnmbnmbmbnm', 'M', 'N', 1, 8, '2022-10-31'),
-(13, 'curioso', 'bnmnmbnmbnmbmbnm', 'M', 'N', 1, 8, '2022-10-31'),
-(14, 'como vc', 'bnmnmbnmbnmbmbnm', 'M', 'N', 1, 8, '2022-10-31'),
-(15, 'kk', 'bnmnmbnmbnmbmbnm', 'M', 'N', 1, 8, '2022-10-31'),
-(16, 'men', 'bnmnmbnmbnmbmbnm', 'M', 'N', 1, 8, '2022-10-31'),
-(17, 'eae', 'hfghgfh', 'M', 'N', 1, 8, '2022-10-31');
+(25, 'essdfsdg', 'fdgdfgfd', 'S', 'R', 1, 8, '2020-07-01'),
+(39, 'sdfdsf', 'gsdgdfgdfg', 'P', 'R', 0, 8, '2022-10-13'),
+(40, 'sdfdsf', 'gsdgdfgdfg', 'P', 'R', 0, 8, '2022-10-13'),
+(41, 'teste', 'teste', 'S', 'N', 8, 15, '2022-10-19'),
+(42, 'jjjj', 'jjjjjj', 'S', 'N', 8, 15, '2022-10-19'),
+(43, 'hhhhhhhg', 'nnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnnn', 'S', 'N', 8, 15, '2022-10-19'),
+(44, 'fsfsdf', 'dsfsdfsdfsdf', 'P', 'N', 8, 0, '2022-10-19'),
+(45, 'ssssssssss', 'ssssssssssssssssssssss', 'P', 'N', 8, 0, '2022-10-19'),
+(46, 'ttttt', 'tttttttttt', 'S', 'N', 8, 15, '2022-10-19');
 
 -- --------------------------------------------------------
 
@@ -495,15 +486,16 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_nickname`, `user_password`, `student_id`, `is_logged`, `id_skin`, `id_torso`, `id_legs`, `id_hair`, `coins`, `points`, `id`, `vkey`, `number_visits`) VALUES
+('admin', 'admin', 0, b'0', 0, 0, 0, 0, 0, 0, 0, NULL, 0),
 ('guisamuel', 'desenhando', 2, b'0', 0, 0, 0, 0, 100, 0, 1, NULL, 0),
 ('capivara12', 'pote1', 2, b'0', 0, 0, 0, 0, 100, 0, 3, NULL, 0),
 ('ZegarekD', 'zeg', 2, b'0', 0, 0, 0, 0, 100, 0, 4, NULL, 0),
 ('primo', 'primo', 2, b'0', 1, 0, 0, 0, 100, 0, 5, NULL, 2),
 ('a', 'a', 2, b'0', 0, 0, 0, 0, 100, 0, 6, NULL, 0),
 ('e', 'e', 2, b'0', 1, 0, 0, 0, 100, 0, 7, NULL, 0),
-('jooj', 'jooj', 5, b'1', 1, 2, 0, 0, 18, 0, 8, NULL, 30),
-('aaaa', 'aaaa', 5, b'0', 1, 1, 0, 0, 0, 0, 15, 'd09cd26e65d9be35845cc09e976af4cb', 4),
-('bbbb', 'bbbb', 5, b'1', 0, 0, 0, 0, 0, 0, 16, '9180e3a4e8d1416f0ab4c2c6c5acce0a', 0),
+('jooj', 'jooj', 5, b'0', 0, 2, 0, 1, 18, 0, 8, NULL, 9),
+('aaaa', 'aaaa', 5, b'0', 0, 1, 0, 1, 0, 0, 15, 'd09cd26e65d9be35845cc09e976af4cb', 0),
+('bbbb', 'bbbb', 5, b'0', 0, 0, 0, 0, 0, 0, 16, '9180e3a4e8d1416f0ab4c2c6c5acce0a', 0),
 ('cccc', 'cccc', 1, b'0', 0, 0, 0, 0, 0, 0, 17, 'e6542f2e18e19025fd4a9e4f2d2c3a73', 0),
 ('dddd', 'dddd', 1, b'0', 0, 0, 0, 0, 0, 0, 18, 'ff3c7dc41e8319f312bb798b84b299d5', 0);
 
@@ -538,8 +530,7 @@ ALTER TABLE `employee`
 ALTER TABLE `friends`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_1` (`user_1`),
-  ADD KEY `user_2` (`user_2`),
-  ADD KEY `notification_id` (`notification_id`);
+  ADD KEY `user_2` (`user_2`);
 
 --
 -- Indexes for table `function`
@@ -649,7 +640,7 @@ ALTER TABLE `employee`
 -- AUTO_INCREMENT for table `friends`
 --
 ALTER TABLE `friends`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `function`
@@ -673,7 +664,7 @@ ALTER TABLE `grades_attendance`
 -- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 
 --
 -- AUTO_INCREMENT for table `number_players`
@@ -727,7 +718,7 @@ ALTER TABLE `teacher_classroom`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Constraints for dumped tables
